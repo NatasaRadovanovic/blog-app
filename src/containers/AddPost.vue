@@ -19,7 +19,7 @@ export default {
 
   data(){
       return{
-          post:{}
+          post:this.getDefaultPost()
       }
   },
  methods: {
@@ -32,8 +32,15 @@ export default {
     },
 
     reset(){
-      this.post = {}
+      this.post = this.getDefaultPost()
     },
+
+    getDefaultPost(){
+      return {
+        title:'',
+        text:''
+      }
+    }
   }
 }
 </script>
