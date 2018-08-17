@@ -1,17 +1,20 @@
 <template>
    <div><br>
-       <h2 style="text-align:center">Add post</h2>
+       <h1 v-if="(!this.$route.params.id)">Add post</h1>
+        <h1 v-else>Edit post</h1>
     <form class="formWrapp" @submit.prevent="onSubmit">
         <div class="form-group">
             <label for="title">Title</label>
             <input type="title" class="form-control" id="title" aria-describedby="emailHelp" 
-            placeholder="Title" v-model="addPost.title">
+            placeholder="Title" v-model="post.title">
         </div>
         <div class="form-group">
             <textarea rows="6" cols="50" class="form-control" id="text"
-             placeholder="Write post..." v-model="addPost.text"></textarea>
+             placeholder="Write post..." v-model="post.text"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+       <button v-if="(this.$route.params.id)" class="btn btn-success" >Done</button>  
+        <button v-else class="btn btn-success">Submit</button>
+        <input class="btn btn-danger" type="reset" value="Reset" />
         </form>
     </div>
 </template>
@@ -20,8 +23,15 @@
 
 export default {
   name: 'PostForm',
-  props:['addPost']
+  props:{
+      post:Object
+  },
   
+  methods:{
+      onSubmit(){
+          this.$emit('onSubmit')
+      }
+  }
 }
 </script>
 

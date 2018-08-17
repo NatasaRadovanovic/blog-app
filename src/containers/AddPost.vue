@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PostForm :addPost='newPost'/> 
+    <PostForm :post='post' @onSubmit='onSubmit'/> 
   </div>
 </template>
 
@@ -17,8 +17,17 @@ export default {
 
   data(){
       return{
-          newPost:{}
+          post:{}
       }
+  },
+ methods: {
+     onSubmit(){
+        posts.add(this.post)
+      .then(response => {
+        this.$router.push('/posts')
+      })
+       .catch(err => console.log(err))
+    },
   }
 }
 </script>
