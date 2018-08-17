@@ -1,6 +1,7 @@
 <template>
   <div>
-   <Posts :posts = "posts" />
+   <Posts :posts="posts"
+          @remove="deletePost" />
   </div>
 </template>
 
@@ -30,6 +31,15 @@ export default {
       })
       .catch(err => console.log(err))
     },
+  
+  methods:{
+    deletePost(post){
+      posts.delete(post.id)
+      .then(response =>{
+        this.posts = this.posts.filter(p => p.id !== post.id )
+      })
+    }
+  }
 
 }
 </script>

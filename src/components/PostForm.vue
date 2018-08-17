@@ -36,9 +36,11 @@ export default {
    
   methods:{
       onSubmit(){
-        if(this.errors.items){
-         return;
+         
+        if(this.errors.items.length !== 0){
+            return;
        }
+       console.log(5);
           this.$emit('onSubmit')
       },
       reset(){
