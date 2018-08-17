@@ -14,7 +14,11 @@ export default class Posts{
     }
 
     add(post){
+<<<<<<< HEAD
         return axios.post('posts', post)
+=======
+        return axios.post('posts', "post")
+>>>>>>> 22c03bd65f70980b4e03ebab026794c4bed388fd
     }
 
 }
