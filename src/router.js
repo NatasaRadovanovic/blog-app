@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router';
 
+
+
 import AppPosts from './containers/AppPosts.vue';
 import AppSinglePost from './containers/AppSinglePost.vue';
 import AddPost from './containers/AddPost.vue'
 
 
 Vue.use(Router);
+
 
 export default new Router({
     mode: 'history',
