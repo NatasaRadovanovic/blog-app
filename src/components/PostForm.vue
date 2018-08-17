@@ -2,7 +2,7 @@
    <div><br>
        <h1 style="text-align:center" v-if="(!this.$route.params.id)">Add post</h1>
         <h1 style="text-align:center" v-else>Edit post</h1>
-    <form class="formWrapp" @submit.prevent="onSubmit" @reset='reset'>
+    <form class="formWrapp" @submit.prevent="onSubmit" @reset='reset' >
         <div class="form-group">
             <label for="title">Title</label>
             <input v-validate="'required|min:2'" autofocus name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp" 
@@ -18,7 +18,7 @@
                 {{ errors.first('text') }}
             </div>
         </div>
-       <button v-if="(this.$route.params.id)" class="btn btn-success" >Done</button>  
+       <button v-if="(this.$route.params.id)" class="btn btn-success" @click='editPost' >Edit</button>  
         <button v-else class="btn btn-success" :disabled="this.errors.items.length !== 0">Submit</button>
         <input class="btn btn-danger" type="reset" value="Reset" />
         </form>
@@ -33,6 +33,7 @@ export default {
       post:Object
   },
   
+   
   methods:{
       onSubmit(){
         if(this.errors.items){
@@ -43,6 +44,10 @@ export default {
       reset(){
           this.$emit('reset')
       },
+
+      editPost(){
+          this.$emit('editPost')
+      }
   }
 }
 </script>

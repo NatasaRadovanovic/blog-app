@@ -2,7 +2,8 @@
   <div>
     <PostForm :post='post' 
               @onSubmit='onSubmit'
-              @reset='reset'/> 
+              @reset='reset'
+              @editPost='editPost'/> 
   </div>
 </template>
 
@@ -16,20 +17,41 @@ export default {
   components: {
     PostForm,
   },
+  
   data(){
       return{
           post:this.getDefaultPost()
       }
   },
+ 
+ created(){
+    if(this.$route.params.id){
+      posts.get(this.$route.params.id)
+      .then(response => (this.post = response.data))
+      .catch(err => console.log(err))
+    }
+  },
+ 
  methods: {
      onSubmit(){
+       this.$route.params.id ? this.editPost() : this.addPost()
+      },
 
-        posts.add(this.post)
+  addPost(){
+       posts.add(this.post)
       .then(response => {
         this.$router.push('/posts')
       })
        .catch(err => console.log(err))
-    },
+  },
+
+  editPost(){
+    posts.edit(this.post)
+    .then(response => {
+      this.$router.push('/posts')
+    })
+    .catch(err => console.log(err))
+  },
 
     reset(){
       this.post = this.getDefaultPost()

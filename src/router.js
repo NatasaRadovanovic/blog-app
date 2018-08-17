@@ -17,6 +17,7 @@ export default new Router({
         {path: '/', redirect: 'posts',  name:'home'},
         {path: '/posts', component: AppPosts, name: 'posts'},
         {path: 'posts/:id', component: AppSinglePost, name: 'single-post'},
-        {path: '/add', component: AddPost, name: 'add-post' }
+        {path: '/add', component: AddPost, name: 'add-post' },
+        {path: '/edit/:id', component: AddPost, name: 'edit-post' }
       ]
 })
