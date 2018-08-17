@@ -2,7 +2,7 @@
    <div><br>
        <h1 v-if="(!this.$route.params.id)">Add post</h1>
         <h1 v-else>Edit post</h1>
-    <form class="formWrapp" @submit.prevent="onSubmit">
+    <form class="formWrapp" @submit.prevent="onSubmit" @reset='reset'>
         <div class="form-group">
             <label for="title">Title</label>
             <input type="title" class="form-control" id="title" aria-describedby="emailHelp" 
@@ -30,7 +30,10 @@ export default {
   methods:{
       onSubmit(){
           this.$emit('onSubmit')
-      }
+      },
+      reset(){
+          this.$emit('reset')
+      },
   }
 }
 </script>

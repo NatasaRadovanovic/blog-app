@@ -1,6 +1,8 @@
 <template>
   <div>
-    <PostForm :post='post' @onSubmit='onSubmit'/> 
+    <PostForm :post='post' 
+              @onSubmit='onSubmit'
+              @reset='reset'/> 
   </div>
 </template>
 
@@ -27,6 +29,10 @@ export default {
         this.$router.push('/posts')
       })
        .catch(err => console.log(err))
+    },
+
+    reset(){
+      this.post = {}
     },
   }
 }
