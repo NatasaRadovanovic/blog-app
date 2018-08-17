@@ -14,7 +14,7 @@ export default class Posts{
     }
 
     add(post){
-        return axios.post('add', "post")
+        return axios.post('posts', "post")
     }
 
 }
