@@ -27,6 +27,11 @@ export default {
   mixins: [DateMixin],
   methods:{
     removePost(post){
+      let deleteConfirm = confirm('Are you sure you want to delete this post?');
+      if(!deleteConfirm){
+        return;
+        
+      }
       this.$emit('remove',post);
     }
    
