@@ -8,28 +8,51 @@
             <div class="helo-block alert alert-danger"  v-show="errors.has('comment')">
                 {{ errors.first('comment') }}
             </div>
+
+             <Captcha @verify="verify"
+                      @expired="expired"
+                      ref="captcha"/>
         </div>
-        <button class="btn btn-success">Submit</button>
+        <button class="btn btn-success"  :disabled="!isCaptchaPassed">Submit</button>
         </form>
     </div>
 </template>
 
 <script>
 
+import Captcha from '../captcha/Captcha'
+
+
 export default {
   name: 'CommentForm',
+    components: {
+    Captcha
+  },
   data(){
       return{
           comment:{
               text:''
           },
+
+          isCaptchaPassed:false
       }
   },
 
   methods:{
       onSubmit(){
+           if (!this.isCaptchaPassed) {
+        return
+      }
           this.$emit('submitComment',this.comment)
+           this.$refs.captcha.reset()
             this.comment = {};
+      },
+
+      verify(){
+          this.isCaptchaPassed = true;
+      },
+      expired(){
+          this.isCaptchaPassed = false;
       }
   }
 
