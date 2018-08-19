@@ -60,7 +60,7 @@ export default {
     getDefaultPost(){
       return {
         title:'',
-        text:''
+        text:'',
       }
     }
   }
