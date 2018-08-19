@@ -12,12 +12,8 @@
             </div>
         </div>
         <div class="form-group">
-            <textarea  v-validate.initial="'required|max:300'" name="text" rows="6" cols="50" class="form-control" id="text"
-             placeholder="Write post..." v-model="post.text"></textarea>
-             <div class="helo-block alert alert-danger"  v-show="errors.has('text')">
-                {{ errors.first('text') }}
-            </div>
-        </div>
+        <editor api-key="bagzc7fxx17zvfepjyh5tkns7b8d8p8ce6muu50affxpvjmi" :init="{plugins: 'wordcount'}" v-model="post.text"></editor>
+        </div> 
        <button v-if="(this.$route.params.id)" class="btn btn-success" @click='editPost' >Edit</button>  
         <button v-else class="btn btn-success" :disabled="errors.items.length !== 0">Submit</button>
         <input class="btn btn-danger" type="reset" value="Reset" />
@@ -27,12 +23,16 @@
 
 <script>
 
+import Editor from '@tinymce/tinymce-vue';
+
 export default {
   name: 'PostForm',
   props:{
       post:Object
   },
-  
+   components: {
+    'editor': Editor 
+  },
    
   methods:{
       onSubmit(){

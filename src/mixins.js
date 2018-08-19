@@ -8,7 +8,7 @@ export const DateMixin = {
         },
 
         diffForHumans (str){
-            return moment(str).from(moment());
+            return moment(str).fromNow();
         }
 
     }
