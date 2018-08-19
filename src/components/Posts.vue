@@ -6,7 +6,7 @@
         <p class="card-text">{{ post.text }}</p>
         <router-link :to="{name: 'single-post', params: {id:post.id}}">View Post</router-link>
         <router-link :to="{name: 'add-post', params: {id:post.id}}">Edit</router-link>
-       <button class="btn btn-danger" @click="removePost(post)" >Delete </button>
+       <button class="btn btn-danger btn-sm" @click="removePost(post)" >Delete </button>
       </div>
       </div>
     </div>
@@ -23,8 +23,8 @@ export default {
     removePost(post){
       this.$emit('remove',post);
     }
+   
   }
-
 }
 </script>
 
