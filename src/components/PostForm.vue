@@ -1,10 +1,9 @@
 <template>
    <div><br>
        <h1 style="text-align:center" v-if="(!this.$route.params.id)">Add post</h1>
-        <h1 style="text-align:center" v-else>Edit post</h1>
-    <form class="formWrapp" @submit.prevent="onSubmit" @reset='reset' >
+        <h1 style="text-align:center" v-else>Edit post</h1><br>
+    <form class="formPostWrapp" @submit.prevent="onSubmit" @reset='reset' >
         <div class="form-group">
-            <label for="title">Title</label>
             <input v-validate.initial="'required|min:2'" autofocus name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp" 
             placeholder="Title" v-model="post.title">
             <div class="helo-block alert alert-danger"  v-show="errors.has('title')">
@@ -55,8 +54,9 @@ export default {
 </script>
 
 <style>
-    .formWrapp{
-        width:50%;
+    .formPostWrapp{
+        width:70%;
         margin:0 auto;
     }
+
 </style>

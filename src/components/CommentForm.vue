@@ -1,20 +1,20 @@
 <template>
-   <div>
-    <form class="formWrapp" @submit.prevent="onSubmit" >
-        <div class="form-group">
-            <label for="title">Comment</label>
-            <textarea v-validate.initial="'required'" autofocus name="comment"  class="form-control" id="comment"  
-            placeholder="Comment" v-model="comment.text"></textarea>
-            <div class="helo-block alert alert-danger"  v-show="errors.has('comment')">
-                {{ errors.first('comment') }}
-            </div>
-
-             <Captcha @verify="verify"
+    <div><br><br>
+        <div class="formWrapp">
+            <form  @submit.prevent="onSubmit" >
+                <div class="form-group">
+                    <textarea rows="5" v-validate.initial="'required'" autofocus name="comment"  class="form-control" id="comment"  
+                    placeholder="Enter your comment here" v-model="comment.text"></textarea>
+                    <div class="helo-block alert alert-danger"  v-show="errors.has('comment')">
+                    {{ errors.first('comment') }}
+                    </div>
+                <Captcha @verify="verify"
                       @expired="expired"
                       ref="captcha"/>
+                </div>
+                <button class="btn btn-success"  :disabled="!isCaptchaPassed">Submit</button>
+            </form>
         </div>
-        <button class="btn btn-success"  :disabled="!isCaptchaPassed">Submit</button>
-        </form>
     </div>
 </template>
 
@@ -35,8 +35,8 @@ export default {
           },
 
           isCaptchaPassed:false
-      }
-  },
+        }
+    },
 
   methods:{
       onSubmit(){
@@ -53,15 +53,14 @@ export default {
       },
       expired(){
           this.isCaptchaPassed = false;
-      }
-  }
-
+       }
+    }
 }
 </script>
 
 <style>
     .formWrapp{
-        width:50%;
-        margin:0 auto;
+        width:30%;
+        float:left;
     }
 </style>

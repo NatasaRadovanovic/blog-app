@@ -1,4 +1,3 @@
-
 <template>
     <vue-recaptcha sitekey="6Le-bmoUAAAAADgF0Xt3EqIdDr332AfG5lAviX6Z"
                    @verify="onVerify"
